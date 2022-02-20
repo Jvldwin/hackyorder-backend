@@ -16,7 +16,7 @@ app.get('/posts', (req, res) => {
       title: 'First Post!',
       content: 'Hello!',
       user: '0',
-      date: Date('1995-12-17T03:24:00'),
+      date: '1995-12-17T03:24:00',
       reactions: {
         thumbsUp: 0,
         hooray: 0,
@@ -30,7 +30,7 @@ app.get('/posts', (req, res) => {
       title: 'Second Post',
       content: 'More text',
       user: '2',
-      date: Date('1995-12-17T03:24:00'),
+      date: '1995-12-17T03:24:00',
       reactions: {
         thumbsUp: 0,
         hooray: 0,
