@@ -10,6 +10,10 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.post('/posts', (req, res) => {
+  res.send('POST request to the homepage')
+})
+
 app.get('/posts', async (req, res) => {
   const data = await connect()
   res.send(data)
