@@ -1,11 +1,12 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+const { nanoid } = require('nanoid')
 
 const postSchema = new mongoose.Schema({
-    id: Number,
+    id: String,
     title: String,
     content: String,
-    user: Number,
+    user: String,
     date: String,
     reactions: {
         thumbsUp: Number,
@@ -18,11 +19,20 @@ const postSchema = new mongoose.Schema({
 
 const Post = mongoose.model('Post', postSchema);
 
-const silence = new Post({
-    id: 1,
-    title: 'First Post!',
-    content: 'Hello!',
-    user: 0,
+async function connect() {
+    await mongoose.connect(process.env.URI)
+    console.log('Connect success')
+    return data = await Post.find()
+}
+
+async function addDoc(e) {
+  const { title, content, userId } = e
+  await mongoose.connect(process.env.URI)
+  const silence = new Post({
+    id: nanoid(),
+    title: title,
+    content: content,
+    user: userId,
     date: '1995-12-17T03:24:00',
     reactions: {
       thumbsUp: 0,
@@ -32,11 +42,9 @@ const silence = new Post({
       eyes: 0,
     },
   });
-
-async function connect() {
-    await mongoose.connect(process.env.URI)
-    console.log('Connect success')
-    return data = await Post.find()
+  silence.save()
+  console.log('Save success')
 }
 
-module.exports = connect
+module.exports.connect = connect
+module.exports.addDoc = addDoc

@@ -1,4 +1,4 @@
-const connect = require('./db')
+const { connect, addDoc } = require('./db')
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
@@ -11,7 +11,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/posts', (req, res) => {
-  res.send({ "message":"Received post request" })
+  const { title, content, userId } = req.body
+  addDoc({ title, content, userId })
 })
 
 app.get('/posts', async (req, res) => {
