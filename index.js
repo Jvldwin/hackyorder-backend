@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/posts', (req, res) => {
-  res.send('POST request to the homepage')
+  res.send({ "message":"Received post request" })
 })
 
 app.get('/posts', async (req, res) => {
