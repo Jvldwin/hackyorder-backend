@@ -16,7 +16,20 @@ app.post('/posts', (req, res) => {
   addDoc({ title, content, userId })
 })
 
+app.patch('/posts/:postId', (req, res) => {
+  res.send(req.params)
+})
+
+app.delete('/posts/:postId', (req, res) => {
+  res.send(req.params)
+})
+
 app.get('/posts', async (req, res) => {
+  const data = await connect()
+  res.send(data)
+})
+
+app.get('/posts/:postId', async (req, res) => {
   const data = await connect()
   res.send(data)
 })
