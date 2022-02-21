@@ -6,7 +6,7 @@ const  cors = require('cors')
 const { json } = require('express/lib/response')
 
 app.use(cors())
-app.use(json())
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
