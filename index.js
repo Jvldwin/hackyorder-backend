@@ -1,4 +1,4 @@
-const { connect, addDoc, getPostById } = require('./db')
+const { connect, addDoc, getPostById, deletePostById } = require('./db')
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
@@ -21,7 +21,8 @@ app.patch('/posts/:postId', (req, res) => {
 })
 
 app.delete('/posts/:postId', (req, res) => {
-  res.send(req.params)
+  const { postId } = req.params
+  deletePostById(postId)
 })
 
 app.get('/posts', async (req, res) => {

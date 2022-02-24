@@ -54,7 +54,15 @@ async function getPostById (e) {
   return res
 }
 
+async function deletePostById (e) {
+  await mongoose.connect(process.env.URI)
+  const res = await Post.findOneAndDelete({ id: e }).catch((err) => {
+    console.log(err)
+  })
+}
+
 module.exports.connect = connect
 module.exports.addDoc = addDoc
 module.exports.getPostById = getPostById
+module.exports.deletePostById = deletePostById
 
