@@ -46,5 +46,16 @@ async function addDoc(e) {
   console.log('Save success')
 }
 
+async function getPostById (e) {
+  await mongoose.connect(process.env.URI)
+  const res = await Post.findOne({ id: e }, function(err) {
+    if (err) console.log('Error: ', err)
+    else console.log('Query success')
+  })
+  return res
+}
+
 module.exports.connect = connect
 module.exports.addDoc = addDoc
+module.exports.getPostById = getPostById
+

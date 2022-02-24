@@ -1,4 +1,4 @@
-const { connect, addDoc } = require('./db')
+const { connect, addDoc, getPostById } = require('./db')
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
@@ -30,7 +30,8 @@ app.get('/posts', async (req, res) => {
 })
 
 app.get('/posts/:postId', async (req, res) => {
-  const data = await connect()
+  const { postId } = req.params
+  const data = await getPostById(postId)
   res.send(data)
 })
 
