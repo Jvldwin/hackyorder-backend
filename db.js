@@ -48,9 +48,8 @@ async function addDoc(e) {
 
 async function getPostById (e) {
   await mongoose.connect(process.env.URI)
-  const res = await Post.findOne({ id: e }, function(err) {
-    if (err) console.log('Error: ', err)
-    else console.log('Query success')
+  const res = await Post.findOne({ id: e }).catch((err) => {
+    console.log(err)
   })
   return res
 }
